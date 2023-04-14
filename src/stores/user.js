@@ -15,7 +15,7 @@ export default defineStore('user', {
         country: values.country
       })
       // 显示注册用户的名字
-      userCred.user.updateProfile({
+      await userCred.user.updateProfile({
         displayName: values.name
       })
       this.userLoggedIn = true
