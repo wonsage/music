@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth' // 用户验证用，无需分配名字
 import 'firebase/firestore' // 与数据库交互，在数据库中存储除邮箱、密码以外的信息
+import 'firebase/storage'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD34N8yoMKriJHF8zLhIL67q62SYcKdQiQ',
@@ -15,10 +16,14 @@ firebase.initializeApp(firebaseConfig)
 
 const auth = firebase.auth()
 const db = firebase.firestore()
+const storage = firebase.storage();
 
 const usersCollection = db.collection('users')
+const songsCollection = db.collection('songs')
 export {
   auth,
   db,
   usersCollection,
+  songsCollection,
+  storage,
 }
