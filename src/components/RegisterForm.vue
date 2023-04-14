@@ -128,9 +128,16 @@ export default {
       try {
         await this.createUser(values);
       } catch (error) {
+        const {code, message} = error
         this.reg_in_submission = false;
         this.reg_alert_variant = 'bg-red-500'
-        this.reg_alert_msg = 'An unexpected error occured. Please try again later.';
+        switch (code) {
+          case 'auth/email-already-in-use':
+            this.reg_alert_msg = message
+            break
+          default:
+            this.reg_alert_msg = 'An unexpected error occured. Please try again later.'; 
+        }
         console.log('auth error', error)
         return;
       }
