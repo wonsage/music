@@ -126,7 +126,7 @@ export default {
       this.reg_alert_msg = 'Please wait! Your account is being created.'
 
       try {
-        this.createUser(values);
+        await this.createUser(values);
       } catch (error) {
         this.reg_in_submission = false;
         this.reg_alert_variant = 'bg-red-500'
