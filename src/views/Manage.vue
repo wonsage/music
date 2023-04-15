@@ -64,8 +64,8 @@ export default {
   },
   async created() {
     const query = songsCollection.where('uid', '==', auth.currentUser.uid) // Query
-    const snapshot = await query.get() // QuerySnapshot
-    snapshot.forEach((document) => {
+    const snapshots = await query.get() // QuerySnapshot
+    snapshots.forEach((document) => {
       // DocumentSnapshot
       this.addSong(document)
     })

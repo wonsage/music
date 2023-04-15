@@ -43,7 +43,7 @@
 
 <script>
 import { ErrorMessage } from 'vee-validate';
-import { songsCollection, storage } from '@/includes/firebase'
+import { songsCollection, storage, auth } from '@/includes/firebase'
 
 
 export default {
@@ -111,7 +111,7 @@ export default {
     async deleteSong () {
       // 在storage中删除文件
       const storageRef = storage.ref()
-      const songRef = storageRef.child(`songs/${this.song.original_name}`)
+      const songRef = storageRef.child(`songs/${this.song.stored_name}`)
       await songRef.delete()
 
       // 在database中删除document
@@ -121,7 +121,6 @@ export default {
       this.removeSong(this.index)
     },
   }
-
 }
 </script>
 

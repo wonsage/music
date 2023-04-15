@@ -146,7 +146,6 @@ export default {
       this.reg_alert_msg = 'Congratulations! Your Account has been created.';
       window.location.reload();
     },
-
   }
 }
 </script>

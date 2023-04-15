@@ -18,10 +18,10 @@
         <input type="file" name="" id="" multiple @change="upload($event)" />
         <hr class="my-6" />
         <!-- Progess Bars -->
-        <div class="mb-4" v-for="upload in uploads" :key="upload.name">
+        <div class="mb-4" v-for="upload in uploads" :key="upload.stored_name">
           <!-- File Name -->
           <div class="font-bold text-sm" :class="upload.text_class">
-            <i :class="upload.icon"></i>{{ upload.name }}
+            <i :class="upload.icon"></i>{{ upload.modified_name }}
           </div>
           <div class="flex h-4 overflow-hidden bg-gray-200 rounded">
             <!-- Inner Progress Bar -->
@@ -63,13 +63,15 @@ export default {
           return;
         }
         // fb
+        const storedName = `${auth.currentUser.uid} - ${file.name}`
         const storageRef = storage.ref() // music-ad8bb.appspot.com
-        const songsRef = storageRef.child(`songs/${file.name}`) // music-ad8bb.appspot.com/songs
+        const songsRef = storageRef.child(`songs/${storedName}`) // music-ad8bb.appspot.com/songs
         const task = songsRef.put(file)
         const uploadIndex = this.uploads.push({
           task,
           current_progress: 0,
-          name: file.name,
+          stored_name: storedName,
+          modified_name: file.name,
           variant: 'bg-blue-400',
           icon: 'fas fa-spinner fa-spin',
           text_class: ''
@@ -87,10 +89,10 @@ export default {
           // 上传快照结束时执行
           // 将文件上传者的相关信息存入数据库
           const song = {
-            uid: auth.currentUser.uid, // 上传用户
-            display_name: auth.currentUser.displayName,
-            original_name: task.snapshot.ref.name,
-            modified_name: task.snapshot.ref.name,
+            uid: auth.currentUser.uid, // 上传用户的UID
+            display_name: auth.currentUser.displayName, // 上传用户的外显名
+            stored_name: task.snapshot.ref.name, // 存储中的文件名
+            modified_name: file.name, // 上传的文件名作为默认外显文件名
             genre: '',
             comment_count: 0, // 评论数
           }
