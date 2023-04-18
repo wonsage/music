@@ -4,7 +4,7 @@
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
       <!-- App Name -->
       <router-link :to="{ name: 'home' }" exact-active-class="no-active"
-        class="text-white font-bold uppercase text-2xl mr-4" href="#">Music</router-link>
+        class="text-white font-bold uppercase text-2xl mr-4" href="#">Muzic</router-link>
 
       <div class="flex flex-grow items-center">
         <!-- Primary Navigation -->

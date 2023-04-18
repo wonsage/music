@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import HomeAbout from '@/views/AboutView.vue'
 import Manage from '@/views/Manage.vue'
+import Song from '@/views/Song.vue'
 import useUserStore from '@/stores/user'
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     meta: {
       requiresAuth: true,
     }
+  },
+  {
+    name: 'song',
+    path: '/song/:id',
+    component: Song,
   },
   {
     // 其他路径都重定向回首页
