@@ -7,7 +7,7 @@ let publicPath = './'
 let base = '/'
 if (process.env.NODE_ENV === 'production') {
   base= '/muzic/'
-  publicPath = 'https://wonsage.github.io'
+  publicPath = 'https://wonsage.github.io/muzic'
 }
 // https://vitejs.dev/config/
 export default defineConfig({
